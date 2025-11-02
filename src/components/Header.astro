@@ -11,13 +11,19 @@
 </header>
 <style>
 
+  header {
+    position: fixed;
+    inset: 0 0 auto auto;
+    width: 100%;
+  }
+
   a {
     text-decoration: none;
   }
 
   nav {
     width: 100%;
-    padding: max(0.75em, 1.25vw) clamp(1rem, -8rem + 18vw, 15rem);
+    padding: max(0.75em, 1.25vw) var(--space-x);
     display: flex;
     justify-content: space-between;
     font-size: 1.35rem;
@@ -32,7 +38,6 @@
 
     li {
       font-weight: 600;
-      letter-spacing: 0.02em;
     }
   }
 

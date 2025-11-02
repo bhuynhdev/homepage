@@ -4,8 +4,16 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+:root {
+  --space-x: clamp(1rem, -7rem + 24vw, 24rem);
+}
+
 body {
   font-family: "Karla", sans-serif;
+}
+
+section {
+  padding-inline: var(--space-x);
 }
 
 .sr-only {
