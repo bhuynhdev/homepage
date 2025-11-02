@@ -5,7 +5,7 @@
  */
 
 :root {
-  --space-x: clamp(1rem, -7rem + 24vw, 24rem);
+  --space-x: clamp(1rem, -7rem + 24vw, 26rem);
 }
 
 body {

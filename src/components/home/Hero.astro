@@ -1,34 +1,65 @@
 <section>
   <div>
-  <h1 id="headline">Hi, I&apos;m Bao Huynh</h1>
-  <p id="sub-headline">Developer, writer, <br/> & builder of cool things</p>
-  <p id="mini-headline">Current: Backend Engineer @ OLR</p>
+    <h1 id="headline">Hi, I&apos;m Bao Huynh</h1>
+    <p id="sub-headline">Developer, writer, <br/> & builder of cool things</p>
+    <p id="mini-headline">Current: Backend Engineer @ OLR</p>
   </div>
 
-  <div>
-    Images
+  <div class="hero-images">
+    <img src="/that-conference-cropped.webp" alt="Bao at THAT Conference" />
   </div>
+
+  <div class='accent-blur-1'></div>
 </section>
 
 <style>
   section {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 47%;
-    place-content: center;
+    gap: 2rem;
+    align-items: center;
     min-height: 100vh;
+    --blur-radius: min(15vw, 200px);
   }
 
   #headline {
-    font-size: 3rem;
+    font-size: 3.25rem;
     margin-block-end: 2.5rem;
   }
 
   #sub-headline {
-    font-size: 1.8rem;
+    font-size: 1.85rem;
     margin-block-end: 2.25rem;
   }
 
   #mini-headline {
     font-style: italic;
   }
+
+  .hero-images {
+    img {
+      margin-left: auto;
+      border-radius: 15%;
+    }
+  }
+
+  .accent-blur-1 {
+    position: absolute;
+    inset: auto auto 0 0;
+    background-color: #f8ddaa;
+    filter: blur(var(--blur-radius));
+    width: min(50vw, 750px);
+    aspect-ratio: 1 / 1;
+    translate: -45% 0%;
+    z-index: -1;
+    border-radius: 100%;
+  }
+
+  @media (max-width: 700px) {
+		.hero-images {
+			display: none;
+		}
+	}
+
 </style>
