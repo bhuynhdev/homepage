@@ -1,3 +1,6 @@
+---
+import HeroImageStack from './HeroImageStack.astro'
+---
 <section>
   <div>
     <h1 id="headline">Hi, I&apos;m Bao Huynh</h1>
@@ -5,8 +8,8 @@
     <p id="mini-headline">Current: Backend Engineer @ OLR</p>
   </div>
 
-  <div class="hero-images">
-    <img src="/that-conference-cropped.webp" alt="Bao at THAT Conference" />
+  <div>
+    <HeroImageStack />
   </div>
 
   <div class='blurry-spot' id='blurry-accent-1'></div>
@@ -25,6 +28,10 @@
     min-height: 100vh;
     overflow-x: hidden;
     --blur-radius: min(15vw, 200px);
+
+    > :nth-child(2) {
+      justify-self: end;
+    }
   }
 
   #headline {
@@ -39,13 +46,6 @@
 
   #mini-headline {
     font-style: italic;
-  }
-
-  .hero-images {
-    img {
-      margin-left: auto;
-      border-radius: 15%;
-    }
   }
 
   .blurry-spot {

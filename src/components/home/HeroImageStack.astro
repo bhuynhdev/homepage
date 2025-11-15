@@ -1,0 +1,107 @@
+<div class="image-stack">
+  <span class="helper-text">Click to change pictures</span>
+  <figure class="active">
+    <img src="/that-conference-cropped.webp" alt="Bao at THAT Conference" width="700" />
+    <figcaption>Me at THAT Conference 2023</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/houston-trip-cropped.webp" alt="Bao at Houston" width="700" />
+    <figcaption>Me at Houston</figcaption>
+  </figure>
+</div>
+
+<script>
+  const container = document.querySelector<HTMLDivElement>(".image-stack")!;
+  const figures = Array.from(container.querySelectorAll("figure"));
+
+  container.onclick = () => {
+    const currentIndex = figures.findIndex(figure => figure.classList.contains('active'));
+
+    if (currentIndex !== -1) {
+      figures[currentIndex].classList.remove('active');
+
+      const nextIndex = (currentIndex + 1) % figures.length;
+      figures[nextIndex].classList.add('active');
+    } else if (figures.length > 0) {
+      // Fallback: If no figure is active for some reason, activate the first one
+      figures[0].classList.add('active');
+    }
+
+  }
+</script>
+
+<style>
+  img {
+    border-radius: 15%;
+    margin-block-end: 1.5em;
+  }
+  figcaption {
+    text-align: center;
+    font-size: 1.1em;
+    opacity: 0;
+    translate: 0% 25px;
+    transition: opacity 250ms ease-in, translate 250ms ease-in;
+  }
+
+  @media (hover: hover) {
+
+    /* Figcaption reveal animation upon hover */
+    .image-stack:hover > figure.active > figcaption {
+      opacity: 1;
+      translate: 0% 0%;
+    }
+
+    /* Stack all figures on top of each other, and reveal upon hovering top of the stack */
+    .image-stack {
+      position: relative;
+      display: grid;
+    }
+    .image-stack > figure {
+      grid-area: 1 / 1;
+      transition: rotate 0.3s ease-out, translate 0.3s ease-out;
+
+      &:nth-of-type(1) { --index: 0; }
+      &:nth-of-type(2) { --index: 1; }
+      &:nth-of-type(3) { --index: 2; }
+
+      z-index: calc(3 - var(--index));
+    }
+
+    .image-stack > figure.active {
+      z-index: 10 !important;
+    }
+
+    .image-stack:hover > figure {
+      rotate: calc(var(--index) * 3deg);
+      translate: calc(var(--index) * 40px);
+
+      > figcaption {
+        /* Need reverse rotation to keep the figcaption straight regardless of parent's rotation */
+        rotate: calc(var(--index) * -3deg);
+      }
+    }
+
+    /** Helper text appearing on hover + pulsing animation */
+    .helper-text {
+      position: absolute;
+      inset: -3em 50% auto auto;
+      translate: 50%;
+      font-style: italic;
+      opacity: 0;
+      transition: opacity 300ms ease-in;
+    }
+
+    .image-stack:hover > .helper-text {
+      opacity: 1;
+      /* animation: pulse 4s ease-in-out 0.3s infinite; */
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+  }
+</style>
+
