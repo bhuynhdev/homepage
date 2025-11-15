@@ -12,23 +12,27 @@
 </div>
 
 <script>
-  const container = document.querySelector<HTMLDivElement>(".image-stack")!;
-  const figures = Array.from(container.querySelectorAll("figure"));
+  const figures = Array.from(document.querySelectorAll(".image-stack > figure"));
 
-  container.onclick = () => {
-    const currentIndex = figures.findIndex(figure => figure.classList.contains('active'));
+  // Attach click listener only to images
+  figures.forEach(figure => {
+    const img = figure.querySelector<HTMLImageElement>("img");
+    if (!img) return;
 
-    if (currentIndex !== -1) {
-      figures[currentIndex].classList.remove('active');
+    img.addEventListener("click", () => {
+      const currentIndex = figures.findIndex(f => f.classList.contains('active'));
 
-      const nextIndex = (currentIndex + 1) % figures.length;
-      figures[nextIndex].classList.add('active');
-    } else if (figures.length > 0) {
-      // Fallback: If no figure is active for some reason, activate the first one
-      figures[0].classList.add('active');
-    }
+      if (currentIndex !== -1) {
+        figures[currentIndex].classList.remove('active');
 
-  }
+        const nextIndex = (currentIndex + 1) % figures.length;
+        figures[nextIndex].classList.add('active');
+      } else if (figures.length > 0) {
+        // Fallback: If no figure is active for some reason, activate the first one
+        figures[0].classList.add('active');
+      }
+    });
+  });
 </script>
 
 <style>
