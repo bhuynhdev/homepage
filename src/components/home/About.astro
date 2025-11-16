@@ -1,8 +1,33 @@
+---
+import SkillIcon from './SkillIcon.astro'
+import { SKILLS } from '../../consts'
+---
 <section id='about-section'>
 <h2 id="headline-about"><span aria-hidden="true">•</span> About</h2>
   <div id='about-description'>
-    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
-    <p>ed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat volup tatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea. consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+    <p>I&apos;ve been a software developers and full-stack web enthusiast for 4+ years,
+      working from <strong>server-ful</strong> to <strong>serverless</strong>,
+      wrangling with both <strong>SQL</strong> and <strong>noSQL</strong>,
+      and writing code in procedural <strong>Typescript</strong> as well as functional <strong>Elixir</strong>.
+    </p>
+    <p>In my off time, I enjoy writing technical articles, building side projects, and doing random hobbies including:
+      strumming the guitar, reading astronomy books, practicing Japanese, or playing some boardgames.
+    </p>
+    <p><strong>Education: </strong>I have a Bachelor of Science in <strong>Computer Science</strong> from the University of Cincinnati in 2024.</p>
+
+    <h2>Skills</h2>
+    {Object.entries(SKILLS).map(([skillCategory, skillList]) => {
+      return (
+        <div class='skill-subsection'>
+          <p class='skill-category-title'>{skillCategory}</p>
+          <ul class='skill-list'>
+            {skillList.map(skillName => <li><SkillIcon iconName={skillName} /></li>)}
+          </ul>
+        </div>
+      )
+    })}
+
+    <h2>Work experiences</h2>
   </div>
 </section>
 
@@ -12,14 +37,29 @@
     grid-template-columns: 33% 1fr;
   }
 
-  #headline-about {
+  #about-description > * + * {
+    margin-block-start: 1em;
+  }
+
+  h2#headline-about {
     font-size: 2.5rem;
   }
 
+  h2 {
+    font-size: 1.75rem;
+  }
 
-  #about-description {
-    > * + * {
-      margin-block-start: 1em;
+  .skill-subsection {
+    .skill-category-title {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .skill-list {
+      list-style-type: none;
+      padding: 0 1em;
+      display: flex;
+      gap: 3rem;
     }
   }
 </style>

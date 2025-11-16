@@ -1,0 +1,26 @@
+---
+type Props = {
+  iconName: string
+  width?: number
+}
+
+let { iconName, width = 45 } = Astro.props
+
+const normalizedIconName = iconName.toLowerCase()
+const deviconUrl = `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${normalizedIconName}/${normalizedIconName}-original.svg`
+---
+
+<figure class='skill-icon'>
+  <img src={deviconUrl} alt={iconName} width={width} />
+  <figcaption>{iconName}</figcaption>
+</figure>
+
+<style>
+  .skill-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+  }
+
+</style>
