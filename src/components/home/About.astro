@@ -5,15 +5,15 @@ import { SKILLS } from '../../consts'
 <section id='about-section'>
 <h2 id="headline-about"><span aria-hidden="true">•</span> About</h2>
   <div id='about-description'>
-    <p>I&apos;ve been a software developers and full-stack web enthusiast for 4+ years,
+    <p>I&apos;ve been a software developer and full-stack web enthusiast for 4+ years,
       working from <strong>server-ful</strong> to <strong>serverless</strong>,
-      wrangling with both <strong>SQL</strong> and <strong>noSQL</strong>,
-      and writing code in procedural <strong>Typescript</strong> as well as functional <strong>Elixir</strong>.
+      wrangling both <strong>SQL</strong> and <strong>noSQL</strong>,
+      and writing procedural <strong>Typescript</strong> as well as functional <strong>Elixir</strong>.
     </p>
-    <p>In my off time, I enjoy writing technical articles, building side projects, and doing random hobbies including:
-      strumming the guitar, reading astronomy books, practicing Japanese, or playing some boardgames.
+    <p>In free time, I enjoy writing technical articles, building side projects, and doing hobbies including:
+      strumming guitar, reading books, practicing Japanese, or playing boardgames.
     </p>
-    <p><strong>Education: </strong>I have a Bachelor of Science in <strong>Computer Science</strong> from the University of Cincinnati in 2024.</p>
+    <p><strong>Education: </strong>I have a Bachelor in <strong>Computer Science</strong> from the University of Cincinnati in 2024.</p>
 
     <h2>Skills</h2>
     {Object.entries(SKILLS).map(([skillCategory, skillList]) => {
@@ -28,13 +28,19 @@ import { SKILLS } from '../../consts'
     })}
 
     <h2>Work experiences</h2>
+    <div class='work-exp-section'>
+      <p class='work-exp-pill'>Online Rewards <span aria-hidden="true">•</span> current</p>
+      <p class='work-exp-pill'>Siemens <span aria-hidden="true">•</span> 2023</p>
+    </div>
   </div>
 </section>
 
 <style>
   section {
     display: grid;
-    grid-template-columns: 33% 1fr;
+    grid-template-columns: 30% 1fr;
+    gap: 3rem;
+    padding-block-end: 4em;
   }
 
   #about-description > * + * {
@@ -58,8 +64,37 @@ import { SKILLS } from '../../consts'
     .skill-list {
       list-style-type: none;
       padding: 0 1em;
-      display: flex;
-      gap: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(7ch, 1fr));
+      place-items: center;
+      gap: max(3vw, 25px) max(2vw, 25px);
+    }
+  }
+
+  .work-exp-section {
+    display: flex;
+    gap: 1.5em;
+  }
+
+  .work-exp-pill {
+    outline: 1px solid oklch(0.681 0.0 0.0 / 0.7);
+    padding: 0.5em 1.5em;
+    border-radius: 3rem;
+
+    &:hover {
+      background-color: oklch(0.175 0.0 0.0);
+      color: white;
+    }
+  }
+
+  @media (max-width: 900px) {
+    section {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .work-exp-section {
+      justify-content: center;
     }
   }
 </style>

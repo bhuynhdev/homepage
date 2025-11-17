@@ -8,7 +8,7 @@ import HeroImageStack from './HeroImageStack.astro'
     <p id="mini-headline">Current: Backend Engineer @ OLR</p>
   </div>
 
-  <div>
+  <div class="hero-images">
     <HeroImageStack />
   </div>
 
@@ -90,6 +90,10 @@ import HeroImageStack from './HeroImageStack.astro'
 		.hero-images {
 			display: none;
 		}
+
+    section {
+      grid-template-columns: 1fr;
+    }
 	}
 
 </style>
